@@ -1,0 +1,10 @@
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe.config
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\bin\Debug\Minesweeper.pdb
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.ChoiceLevel.resources
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Properties.Resources.resources
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Game.resources

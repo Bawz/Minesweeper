@@ -1,0 +1,9 @@
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\bin\Release\Minesweeper.exe.config
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\bin\Release\Minesweeper.exe
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\bin\Release\Minesweeper.pdb
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.ChoiceLevel.resources
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.Game.resources
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.Properties.Resources.resources
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.csproj.GenerateResource.Cache
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.exe
+c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.pdb
