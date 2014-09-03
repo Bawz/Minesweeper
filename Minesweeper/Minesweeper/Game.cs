@@ -31,15 +31,19 @@ namespace Minesweeper
         #endregion
 
         #region GameVars
+
         bool[,] _Field;
         int[,] _BombsAround;
         Button[,] _Buttons;
 
-        bool _Retry = false;
+        bool _Retry = true; /* *-*-* TODO *-*-* */
         int _BombCount;
         System.Diagnostics.Stopwatch _Timer = new System.Diagnostics.Stopwatch();
         Thread _TimersThread;
         Label _TimersLabel;
+
+        Label _BombsLeft;
+
         #endregion
 
         // only read
@@ -144,7 +148,7 @@ namespace Minesweeper
 
                             _TimersThread.Start();
                         }
-#endregion
+                        #endregion
 
                         Button button = sender as Button;
                         Point postion = (Point)button.Tag;
@@ -208,9 +212,6 @@ namespace Minesweeper
                     {
                         if (_e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
-                            // TODO SET POSSIBLE BOMB MARKER IMAGE
-                            //((Button)sender).Text = ((Button)sender).Text == "X" ? "" : "X";
-
                             if (((Button)sender).BackgroundImage == null)
                             {
                                 ((Button)sender).BackgroundImage = buttonBackgroundImage;
@@ -223,6 +224,8 @@ namespace Minesweeper
                                 ((Button)sender).BackgroundImage = null;
                                 _BombCount++;
                             }
+
+                            _BombsLeft.Text = _BombCount.ToString();
                         }
                     };
                     #endregion
@@ -233,25 +236,44 @@ namespace Minesweeper
             #endregion
 
             #region BombCount
+
             // how many bombs in field
             int bombCount = ((gameSize.X * gameSize.Y) * BOMB_COUNT_PERCENT) / 100;
             _BombCount = bombCount; // REMOVE bombCount
+
             #endregion
 
             #region InitializeTimeAndBombLeftLabel
             // initialize bombs left and time label
-            _TimersLabel = new Label()
+            Label l1 = new Label()
             {
-                Text = "Verstrichene Zeit: Es geht noch nicht los!",
+                Text = "Zeit: ",
                 Location = new Point(SPACE_AROUND, SPACE_AROUND)
             };
 
-            Label bll = new Label()
+            _TimersLabel = new Label()
             {
-                Text = string.Format("Verbleibende Bomben: {0}", bombCount)
+                Text = "Es geht noch nicht los!",
+                Location = new Point(SPACE_AROUND + l1.Width, SPACE_AROUND)
             };
 
+            Label l2 = new Label()
+            {
+                Text = "Bomben: ",
+                Location = new Point(SPACE_AROUND, SPACE_AROUND + l1.Height)
+            };
+
+            _BombsLeft = new Label()
+            {
+                Text = bombCount.ToString(),
+                Location = new Point(SPACE_AROUND + _TimersLabel.Width, SPACE_AROUND + l1.Height)
+            };
+
+            this.Controls.Add(l2);
+            this.Controls.Add(l1);
             this.Controls.Add(_TimersLabel);
+            this.Controls.Add(_BombsLeft);
+
             #endregion
 
             #region GenerateRandomBombs
