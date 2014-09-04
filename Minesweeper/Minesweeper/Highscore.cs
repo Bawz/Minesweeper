@@ -121,6 +121,9 @@ namespace Minesweeper
                     break;
             }
 
+            if (!Directory.Exists("./highscore"))
+                Directory.CreateDirectory("./highscore");
+
             if (!File.Exists("./highscore/" + Level))
                 File.Create("./highscore/" + Level).Close();
 

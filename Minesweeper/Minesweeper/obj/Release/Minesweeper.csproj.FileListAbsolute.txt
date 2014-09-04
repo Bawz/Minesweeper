@@ -7,3 +7,14 @@ c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\o
 c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.csproj.GenerateResource.Cache
 c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.exe
 c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Release\Minesweeper.pdb
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\bin\Release\Minesweeper.exe.config
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.exe
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.pdb
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\bin\Release\Minesweeper.exe
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\bin\Release\Minesweeper.pdb
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.ChoiceLevel.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.Game.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.Bestenliste.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.HighscoreForm.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.Properties.Resources.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.csproj.GenerateResource.Cache

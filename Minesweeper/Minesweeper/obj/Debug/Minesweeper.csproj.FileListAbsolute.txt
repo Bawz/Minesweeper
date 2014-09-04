@@ -9,14 +9,13 @@ c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\o
 c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
 c:\users\theodor\documents\visual studio 2013\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Game.resources
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe.config
-C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
-C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\bin\Debug\Minesweeper.pdb
-C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.ChoiceLevel.resources
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Game.resources
-C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Properties.Resources.resources
-C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Bestenliste.resources
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.HighscoreForm.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Properties.Resources.resources
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
