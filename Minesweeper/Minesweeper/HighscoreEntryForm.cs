@@ -18,11 +18,16 @@ namespace Minesweeper
         public Bestenliste(int lvl, string time)
         {
             Level = lvl;
+            Time = time;
 
             InitializeComponent();
 
             CancelButton.Click += CancelButton_Click;
             ApplyButton.Click += ApplyButton_Click;
+
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         void ApplyButton_Click(object sender, EventArgs e)

@@ -9,6 +9,8 @@ namespace Minesweeper
 {
     class Highscore
     {
+        const int HIGHSCORE_SIZE = 10;
+
         static Highscore _Highscore_Small_Instance;
         public static Highscore Small
         {
@@ -83,7 +85,7 @@ namespace Minesweeper
 
             public string AsString()
             {
-                return string.Format("{0}\t{1}" + Environment.NewLine, Name, Time);
+                return string.Format("{0} {1}" + Environment.NewLine, Name, Time);
             }
 
             public static Entry Load(string s)
@@ -120,39 +122,45 @@ namespace Minesweeper
             }
 
             if (!File.Exists("./highscore/" + Level))
-                File.Create("./highscore/" + Level);
-            
-            _Highscore = File.ReadAllLines("highscore/" + Level).Select(line => Entry.Load(line)).ToList();
+                File.Create("./highscore/" + Level).Close();
+
+            _Highscore = File.ReadAllLines("highscore/" + Level).Select(line => Entry.Load(line)).Take(HIGHSCORE_SIZE).ToList();
+        }
+
+        public bool Any()
+        {
+            return _Highscore.Count > 0;
         }
 
         public string All()
         {
-            return string.Join("", _Highscore.Select(entry => entry.AsString()));
+            return string.Join("", _Highscore.OrderBy(entry =>
+            {
+                int[] ary = entry.Time.Split(':').Select(s => int.Parse(s)).ToArray();
+
+                // mins to ms, secs to ms add ms, ms * 10 because x,10 = 100ms
+                return ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10;
+            }).Take(HIGHSCORE_SIZE).Select((entry, index) => string.Format("{0} {1,15} {2}" + Environment.NewLine, index, entry.Name, entry.Time)));
         }
 
         public string MinTime()
         {
-            return _Highscore.Count >= 10 ?
+            return _Highscore.Count >= HIGHSCORE_SIZE ?
                 _Highscore.Last().Time :
                 "60:60:99";
         }
 
         public void Add(string name, string time)
         {
-            if (_Highscore.Count > 10)
-            {
-                _Highscore = _Highscore.OrderBy(entry =>
-                {
-                    int[] ary = entry.Time.Split(';').Select(s => int.Parse(s)).ToArray();
+            _Highscore.Add(new Entry(name, time));
 
-                    // mins to ms, secs to ms add ms, ms * 10 because x,10 = 100ms
-                    return ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10;
-                }).ToList();
-            }
-            else
+            _Highscore = _Highscore.OrderBy(entry =>
             {
-                _Highscore.Add(new Entry(name, time));
-            }
+                int[] ary = entry.Time.Split(':').Select(s => int.Parse(s)).ToArray();
+
+                // mins to ms, secs to ms add ms, ms * 10 because x,10 = 100ms
+                return ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10;
+            }).Take(HIGHSCORE_SIZE).ToList();
         }
     }
 }

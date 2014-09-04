@@ -94,6 +94,7 @@ namespace Minesweeper
             #endregion
 
             #region WindowSetup
+
             // initialize size
             this.Size = new Size(
                 2 * SPACE_AROUND + gameSize.X * SIZE_BUTTON + gameSize.X * SPACE_BETWEEN + SIZE_BUTTON + MOVE_BUTTON_HORIZONTAL,
@@ -104,6 +105,7 @@ namespace Minesweeper
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+
             #endregion
 
             #region InitialiteBombOrNotButtons
@@ -113,6 +115,7 @@ namespace Minesweeper
             {
                 for (int e = 0; e < gameSize.X; e++)
                 {
+                    #region CreateButton
                     Button b = new Button()
                     {
                         Tag = new Point(r, e),
@@ -125,6 +128,10 @@ namespace Minesweeper
 
                     // ADD CONTROLS
                     this.Controls.Add(b);
+
+                    _Buttons[r, e] = b;
+
+                    #endregion
 
                     #region LeftClickEvent
                     // LEFT CLICK EVENT
@@ -274,7 +281,7 @@ namespace Minesweeper
                                     int[] ary = sAry.Select(s => int.Parse(s)).ToArray();
 
                                     long eTime = _Timer.ElapsedMilliseconds;
-                                    int x = ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10;
+                                    int x = ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10; // calc minutes, seconds to ms
 
                                     bool bTmp = true;
                                     for (int r_ = 0; r_ < gameSize.Y; r_++)
@@ -296,6 +303,9 @@ namespace Minesweeper
                                         {
                                             this.Hide();
 
+                                            _TimersThread.Abort();
+                                            _Timer.Stop();
+
                                             var ts = TimeSpan.FromMilliseconds(eTime);
                                             string s = string.Format("{0:D2}:{1:D2}:{2:D2}", ts.Minutes, ts.Seconds, ts.Milliseconds);
 
@@ -307,13 +317,8 @@ namespace Minesweeper
 
                                             t.Start();
                                             t.Join();
-
-                                            this.Close();
                                         }
-                                        else
-                                        {
-                                            this.Close();
-                                        }
+                                        this.Close();
                                     }
                                 }
                             }
@@ -327,8 +332,6 @@ namespace Minesweeper
                         }
                     };
                     #endregion
-
-                    _Buttons[r, e] = b;
                 }
             }
             #endregion

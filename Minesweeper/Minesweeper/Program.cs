@@ -17,20 +17,7 @@ namespace Minesweeper
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Game game;
-            ChoiceLevel choiceLevel;
-
-            do
-            {
-                choiceLevel = new ChoiceLevel();
-                Application.Run(choiceLevel);
-
-                if (choiceLevel.GameSize == null) return;
-
-                game = new Game(choiceLevel.GameSize);
-                Application.Run(game);
-            }
-            while (game.Retry);
+            Application.Run(new ChoiceLevel());
         }
     }
 }

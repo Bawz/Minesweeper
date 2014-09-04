@@ -35,18 +35,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(92, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(70, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bestenliste";
             // 
             // HighscoreLabel
             // 
             this.HighscoreLabel.AutoSize = true;
+            this.HighscoreLabel.Font = new System.Drawing.Font("Calibri", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HighscoreLabel.Location = new System.Drawing.Point(92, 55);
             this.HighscoreLabel.Name = "HighscoreLabel";
-            this.HighscoreLabel.Size = new System.Drawing.Size(0, 13);
+            this.HighscoreLabel.Size = new System.Drawing.Size(0, 17);
             this.HighscoreLabel.TabIndex = 1;
             // 
             // HighscoreForm

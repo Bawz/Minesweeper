@@ -66,6 +66,7 @@
             // NameBox
             // 
             this.NameBox.Location = new System.Drawing.Point(33, 75);
+            this.NameBox.MaxLength = 15;
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(100, 20);
             this.NameBox.TabIndex = 3;
