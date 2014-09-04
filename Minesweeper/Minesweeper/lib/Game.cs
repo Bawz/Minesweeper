@@ -36,7 +36,6 @@ namespace Minesweeper
         int[,] _BombsAround;
         Button[,] _Buttons;
 
-        bool _Retry = false; /* *-*-* TODO *-*-* */
         int _BombCount;
         System.Diagnostics.Stopwatch _Timer = new System.Diagnostics.Stopwatch();
         Thread _TimersThread;
@@ -45,15 +44,6 @@ namespace Minesweeper
         Label _BombsLeft;
 
         #endregion
-
-        // only read
-        public bool Retry
-        {
-            get
-            {
-                return _Retry;
-            }
-        }
 
         ~Game()
         {
@@ -295,29 +285,25 @@ namespace Minesweeper
                                         }
                                     }
 
-                                    if (bTmp)
+                                    if (bTmp && eTime < x)
                                     {
-                                        _Retry = true;
+                                        this.Hide();
 
-                                        if (eTime < x)
-                                        {
-                                            this.Hide();
+                                        _TimersThread.Abort();
+                                        _Timer.Stop();
 
-                                            _TimersThread.Abort();
-                                            _Timer.Stop();
+                                        var ts = TimeSpan.FromMilliseconds(eTime);
+                                        string s = string.Format("{0:D2}:{1:D2}:{2:D2}", ts.Minutes, ts.Seconds, ts.Milliseconds);
 
-                                            var ts = TimeSpan.FromMilliseconds(eTime);
-                                            string s = string.Format("{0:D2}:{1:D2}:{2:D2}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+                                        Bestenliste bl = new Bestenliste(Level, s);
 
-                                            Bestenliste bl = new Bestenliste(Level, s);
+                                        Thread t = new Thread(new ThreadStart(() =>
+                                            Application.Run(bl)
+                                        ));
 
-                                            Thread t = new Thread(new ThreadStart(() =>
-                                                Application.Run(bl)
-                                            ));
+                                        t.Start();
+                                        t.Join();
 
-                                            t.Start();
-                                            t.Join();
-                                        }
                                         this.Close();
                                     }
                                 }

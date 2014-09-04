@@ -47,43 +47,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChoiceLevel.cs">
+    <Compile Include="lib\ChoiceLevel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChoiceLevel.Designer.cs">
+    <Compile Include="lib\ChoiceLevel.Designer.cs">
       <DependentUpon>ChoiceLevel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs">
+    <Compile Include="lib\Game.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Game.Designer.cs">
+    <Compile Include="lib\Game.Designer.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
-    <Compile Include="Highscore.cs" />
-    <Compile Include="HighscoreEntryForm.cs">
+    <Compile Include="lib\Highscore.cs" />
+    <Compile Include="lib\HighscoreEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HighscoreEntryForm.Designer.cs">
+    <Compile Include="lib\HighscoreEntryForm.Designer.cs">
       <DependentUpon>HighscoreEntryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HighscoreForm.cs">
+    <Compile Include="lib\HighscoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HighscoreForm.Designer.cs">
+    <Compile Include="lib\HighscoreForm.Designer.cs">
       <DependentUpon>HighscoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="lib\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChoiceLevel.resx">
+    <EmbeddedResource Include="lib\ChoiceLevel.resx">
       <DependentUpon>ChoiceLevel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Game.resx">
+    <EmbeddedResource Include="lib\Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HighscoreEntryForm.resx">
+    <EmbeddedResource Include="lib\HighscoreEntryForm.resx">
       <DependentUpon>HighscoreEntryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HighscoreForm.resx">
+    <EmbeddedResource Include="lib\HighscoreForm.resx">
       <DependentUpon>HighscoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -109,7 +109,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Untitled.bmp" />
+    <Content Include="lib\Untitled.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
