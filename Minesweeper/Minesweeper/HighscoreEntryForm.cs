@@ -46,7 +46,12 @@ namespace Minesweeper
             }
             this.Hide();
 
-            Application.Run(new HighscoreForm(Level));
+            System.Threading.Thread t = new System.Threading.Thread(
+                new System.Threading.ThreadStart(
+                    () => Application.Run(new HighscoreForm(Level))));
+
+            t.Start();
+            t.Join();
 
             this.Close();
         }

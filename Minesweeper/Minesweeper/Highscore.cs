@@ -16,7 +16,7 @@ namespace Minesweeper
             {
                 if (_Highscore_Small_Instance == null)
                 {
-                    _Highscore_Small_Instance = new Highscore();
+                    _Highscore_Small_Instance = new Highscore(0);
                 }
 
                 return _Highscore_Small_Instance;
@@ -30,7 +30,7 @@ namespace Minesweeper
             {
                 if (_Highscore_Middle_Instance == null)
                 {
-                    _Highscore_Middle_Instance = new Highscore();
+                    _Highscore_Middle_Instance = new Highscore(1);
                 }
 
                 return _Highscore_Middle_Instance;
@@ -44,11 +44,25 @@ namespace Minesweeper
             {
                 if (_Highscore_Big_Instance == null)
                 {
-                    _Highscore_Big_Instance = new Highscore();
+                    _Highscore_Big_Instance = new Highscore(2);
                 }
 
                 return _Highscore_Big_Instance;
             }
+        }
+
+        public static Highscore ByID(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return Highscore.Small;
+                case 1:
+                    return Highscore.Middle;
+                case 2:
+                    return Highscore.Big;
+            }
+            return null;
         }
 
         class Entry
@@ -84,15 +98,31 @@ namespace Minesweeper
 
         ~Highscore()
         {
-            File.WriteAllText("./highscore", string.Join("", _Highscore.Select(entry => entry.ToEntry())));
+            File.WriteAllText("./highscore/" + Level, string.Join("", _Highscore.Select(entry => entry.ToEntry())));
         }
 
-        public Highscore()
+        string Level;
+        public Highscore(int lvl)
         {
-            if (!File.Exists("./highscore/"))
-                File.Create("./highscore/");
+            switch (lvl)
+            {
+                case 0:
+                    Level = "small";
+                    break;
+                case 1:
+                    Level = "middle";
+                    break;
+                case 2:
+                    Level = "big";
+                    break;
+                default:
+                    break;
+            }
+
+            if (!File.Exists("./highscore/" + Level))
+                File.Create("./highscore/" + Level);
             
-            _Highscore = File.ReadAllLines("./highscore").Select(line => Entry.Load(line)).ToList();
+            _Highscore = File.ReadAllLines("highscore/" + Level).Select(line => Entry.Load(line)).ToList();
         }
 
         public string All()
@@ -102,14 +132,27 @@ namespace Minesweeper
 
         public string MinTime()
         {
-            return _Highscore.Count > 10 ?
+            return _Highscore.Count >= 10 ?
                 _Highscore.Last().Time :
-                "00:00:00";
+                "60:60:99";
         }
 
         public void Add(string name, string time)
         {
-            _Highscore.Add(new Entry(name, time));
+            if (_Highscore.Count > 10)
+            {
+                _Highscore = _Highscore.OrderBy(entry =>
+                {
+                    int[] ary = entry.Time.Split(';').Select(s => int.Parse(s)).ToArray();
+
+                    // mins to ms, secs to ms add ms, ms * 10 because x,10 = 100ms
+                    return ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10;
+                }).ToList();
+            }
+            else
+            {
+                _Highscore.Add(new Entry(name, time));
+            }
         }
     }
 }

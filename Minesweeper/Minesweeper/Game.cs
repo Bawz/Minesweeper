@@ -36,7 +36,7 @@ namespace Minesweeper
         int[,] _BombsAround;
         Button[,] _Buttons;
 
-        bool _Retry = true; /* *-*-* TODO *-*-* */
+        bool _Retry = false; /* *-*-* TODO *-*-* */
         int _BombCount;
         System.Diagnostics.Stopwatch _Timer = new System.Diagnostics.Stopwatch();
         Thread _TimersThread;
@@ -65,14 +65,32 @@ namespace Minesweeper
             _Timer.Stop();
         }
 
+        int Level;
         public Game(Point gameSize)
         {
             InitializeComponent();
 
             #region InitializeBombBombsAroundButtons_Field
+
             _Field = new bool[gameSize.X, gameSize.Y];
             _BombsAround = new int[gameSize.X, gameSize.Y];
             _Buttons = new Button[gameSize.X, gameSize.Y];
+
+            switch (gameSize.X * gameSize.Y)
+            {
+                case 64:
+                    Level = 0;
+                    break;
+                case 256:
+                    Level = 1;
+                    break;
+                case 400:
+                    Level = 2;
+                    break;
+                default:
+                    break;
+            }
+
             #endregion
 
             #region WindowSetup
@@ -108,6 +126,7 @@ namespace Minesweeper
                     // ADD CONTROLS
                     this.Controls.Add(b);
 
+                    #region LeftClickEvent
                     // LEFT CLICK EVENT
                     b.Click += (object sender, EventArgs _e) =>
                     {
@@ -196,6 +215,36 @@ namespace Minesweeper
                                     if (_BombsAround[pos[0], pos[1]] > 0)
                                     {
                                         _Buttons[pos[0], pos[1]].Text = _BombsAround[pos[0], pos[1]].ToString();
+
+                                        switch (_BombsAround[pos[0], pos[1]] - 1)
+                                        {
+                                            case 0:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Blue;
+                                                break;
+                                            case 1:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Green;
+                                                break;
+                                            case 2:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Red;
+                                                break;
+                                            case 3:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.DarkBlue;
+                                                break;
+                                            case 4:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Brown;
+                                                break;
+                                            case 5:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Cyan;
+                                                break;
+                                            case 6:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Black;
+                                                break;
+                                            case 7:
+                                                _Buttons[pos[0], pos[1]].ForeColor = Color.Gray;
+                                                break;
+                                            default:
+                                                break;
+                                        }
                                     }
                                 }
                             }
@@ -206,6 +255,7 @@ namespace Minesweeper
                         while (pathTodoList.Count > 0);
                         #endregion
                     };
+                    #endregion
 
                     #region MouseClickRigthEvent
                     b.MouseUp += (object sender, MouseEventArgs _e) =>
@@ -215,9 +265,57 @@ namespace Minesweeper
                             if (((Button)sender).BackgroundImage == null)
                             {
                                 ((Button)sender).BackgroundImage = buttonBackgroundImage;
-                                _BombCount--;
 
-                                // check bombs
+                                if (--_BombCount == 0)
+                                {
+                                    string min = Highscore.ByID(Level).MinTime();
+
+                                    string[] sAry = min.Split(':');
+                                    int[] ary = sAry.Select(s => int.Parse(s)).ToArray();
+
+                                    long eTime = _Timer.ElapsedMilliseconds;
+                                    int x = ary[0] * 60 * 1000 + ary[1] * 1000 + ary[2] * 10;
+
+                                    bool bTmp = true;
+                                    for (int r_ = 0; r_ < gameSize.Y; r_++)
+                                    {
+                                        for (int e_ = 0; e_ < gameSize.X; e_++)
+                                        {
+                                            if (_Buttons[r_, e_].BackgroundImage != null)
+                                            {
+                                                bTmp = bTmp && _Field[r_, e_];
+                                            }
+                                        }
+                                    }
+
+                                    if (bTmp)
+                                    {
+                                        _Retry = true;
+
+                                        if (eTime < x)
+                                        {
+                                            this.Hide();
+
+                                            var ts = TimeSpan.FromMilliseconds(eTime);
+                                            string s = string.Format("{0:D2}:{1:D2}:{2:D2}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+
+                                            Bestenliste bl = new Bestenliste(Level, s);
+
+                                            Thread t = new Thread(new ThreadStart(() =>
+                                                Application.Run(bl)
+                                            ));
+
+                                            t.Start();
+                                            t.Join();
+
+                                            this.Close();
+                                        }
+                                        else
+                                        {
+                                            this.Close();
+                                        }
+                                    }
+                                }
                             }
                             else
                             {
@@ -238,9 +336,9 @@ namespace Minesweeper
             #region BombCount
 
             // how many bombs in field
-            int bombCount = ((gameSize.X * gameSize.Y) * BOMB_COUNT_PERCENT) / 100;
-            _BombCount = bombCount; // REMOVE bombCount
-
+            int bombCount = _BombCount = ((gameSize.X * gameSize.Y) * BOMB_COUNT_PERCENT) / 100;
+            
+            //bombCount--;
             #endregion
 
             #region InitializeTimeAndBombLeftLabel
@@ -279,11 +377,11 @@ namespace Minesweeper
             #region GenerateRandomBombs
 
             Random rnd = new Random();
-            while (bombCount > 0)
+            do 
             {
-                for (int r = 0; r < gameSize.Y; r++)
+                for (int r = 0; r < gameSize.Y && bombCount > 0; r++)
                 {
-                    for (int e = 0; e < gameSize.X; e++)
+                    for (int e = 0; e < gameSize.X && bombCount > 0; e++)
                     {
                         if (rnd.Next(0, 100) < BOMB_COUNT_PERCENT && !_Field[r, e] &&
                             !combinations.Any(cb =>
@@ -292,13 +390,13 @@ namespace Minesweeper
                                     e_ = cb[1] + e;
 
                                 // Before validate that prevents 3x3 boxes check that the center is inside the field
-                                return r_ > 0 && r_ < gameSize.Y && e_ > 0 && e_ < gameSize.X && combinations.All(_cb =>
+                                return r_ >= 0 && r_ < gameSize.Y && e_ >= 0 && e_ < gameSize.X && combinations.All(_cb =>
                                 {
                                     int sum_r = r_ + _cb[0],
                                         sum_e = e_ + _cb[1];
 
                                     // first validate and _Field(true) check (bomb)
-                                    bool isBomb = sum_r != r && sum_e != e && sum_e > 0 && sum_e < gameSize.X && sum_r > 0 && sum_r < gameSize.Y &&
+                                    bool isBomb = sum_r != r && sum_e != e && sum_e >= 0 && sum_e < gameSize.X && sum_r >= 0 && sum_r < gameSize.Y &&
                                         _Field[sum_r, sum_e];
 
                                     return isBomb;
@@ -311,6 +409,7 @@ namespace Minesweeper
                     }
                 }
             }
+            while (bombCount > 0);
             #endregion
 
             #region SetBombsAroundInteger
