@@ -29,20 +29,7 @@ namespace Minesweeper
         {
             if (NameBox.Text != "")
             {
-                switch (Level)
-                {
-                    case 0:
-                        Highscore.Small.Add(NameBox.Text, Time);
-                        break;
-                    case 1:
-                        Highscore.Middle.Add(NameBox.Text, Time);
-                        break;
-                    case 2:
-                        Highscore.Big.Add(NameBox.Text, Time);
-                        break;
-                    default:
-                        break;
-                }
+                Highscore.ByID(Level).Add(NameBox.Text, Time);
             }
             this.Hide();
 
