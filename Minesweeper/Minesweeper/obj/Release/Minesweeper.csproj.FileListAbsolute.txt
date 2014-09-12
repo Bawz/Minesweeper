@@ -18,3 +18,4 @@ C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Releas
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.HighscoreForm.resources
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.Properties.Resources.resources
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.csproj.GenerateResource.Cache
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Release\Minesweeper.csprojResolveAssemblyReference.cache

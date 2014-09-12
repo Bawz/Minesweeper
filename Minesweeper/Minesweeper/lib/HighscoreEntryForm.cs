@@ -24,13 +24,25 @@ namespace Minesweeper
 
             CancelButton.Click += CancelButton_Click;
             ApplyButton.Click += ApplyButton_Click;
+            NameBox.KeyDown += NameBox_KeyDown;
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
         }
 
+        void NameBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+                Apply();
+        }
+
         void ApplyButton_Click(object sender, EventArgs e)
+        {
+            Apply();
+        }
+
+        void Apply()
         {
             if (NameBox.Text != "")
             {

@@ -19,3 +19,4 @@ C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.Cache
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
 C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\Theodor\Documents\GitHub\Minesweeper\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
